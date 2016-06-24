@@ -1,0 +1,109 @@
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+def versionName = '1.0.0-beta1'
+
+group = 'com.ligux.lib.widget'
+// rootProject.name is artifactId
+
+version = versionName
+
+description = 'ExRecyclerView library 1.0.0 Beta 1'
+def siteUrl = 'https://github.com/LiGux/ExRecyclerView'      // Homepage URL of the library
+def gitUrl = 'https://github.com/LiGux/ExRecyclerView.git'   // Git repository URL // Maven Group ID for the artifact
+
+install {
+    repositories.mavenInstaller {
+        // This generates POM.xml with proper parameters
+        pom {
+            project {
+                packaging 'aar'
+                // Add your description here
+                name 'An extended RecyclerView library which support header, footer, loadMore .etc features which based on Android official RecyclverView.'
+                url siteUrl
+                // Set your license
+                licenses {
+                    license {
+                        name 'The Apache Software License, Version 2.0'
+                        url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id 'bintray-ligux-maven'        //填写的一些基本信息
+                        name 'ligux'
+                        email 'ligux@ligux.com'
+                    }
+                }
+                scm {
+                    connection gitUrl
+                    developerConnection gitUrl
+                    url siteUrl
+                }
+            }
+        }
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadoc(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    failOnError false
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+//task androidJavadocs(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
+//
+//task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
+//    classifier = 'javadoc'
+//    from androidJavadocs.destinationDir
+//}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+bintray {
+    user = properties.getProperty('bintray_user')
+    key = properties.getProperty('bintray_api_key')
+    configurations = ['archives']
+
+    pkg {
+        repo = 'maven'
+        name = 'com.ligux.lib.widget.exrecyclerview'
+        desc = description
+        userOrg = 'ligux'
+        licenses = ['Apache-2.0']
+        vcsUrl = 'https://github.com/LiGux/ExRecyclerView.git'
+
+        version {
+            name = versionName
+            desc = description
+            released  = new Date()
+            vcsTag = versionName
+        }
+    }
+}
+
+javadoc {
+    options{
+        encoding "UTF-8"
+        charSet 'UTF-8'
+    }
+}
