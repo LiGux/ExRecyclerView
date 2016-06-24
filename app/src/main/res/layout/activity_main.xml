@@ -9,13 +9,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.ligux.lib.widget.exrecyclerdemo.MainActivity">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <!--<TextView-->
+        <!--android:id="@+id/text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Hello World!" />-->
 
-    <com.ligux.lib.widget.exrecyclerview.ExRecyclerView
+    <com.ligux.lib.widget.exrecyclerview.ExtendRecyclerView
         android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
