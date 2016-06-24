@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingTop="10dp"
+        android:gravity="center">
+
+        <!--<ProgressBar-->
+            <!--android:id="@+id/refresh_progress"-->
+            <!--style="?android:attr/progressBarStyle"-->
+            <!--android:layout_width="43dp"-->
+            <!--android:layout_height="43dp"-->
+            <!--android:gravity="center"-->
+            <!--android:indeterminateDrawable="@drawable/pull_to_refresh_third_anim"-->
+            <!--android:visibility="gone"/>-->
+
+        <ProgressBar
+            android:id="@+id/refresh_progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="43dp"
+            android:layout_height="43dp"
+            android:gravity="center"
+            android:indeterminate="true"
+            android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/refresh_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:src="@mipmap/ic_launcher"/>
+        <TextView
+            android:id="@+id/fail_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="刷新失败"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+</LinearLayout>
